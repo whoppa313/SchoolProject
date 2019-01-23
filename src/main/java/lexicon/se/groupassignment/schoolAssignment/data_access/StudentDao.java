@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import lexicon.se.groupassignment.schoolAssignment.models.Student;
 
-
 public interface StudentDao {
 	
 	boolean saveStudent(Student student);

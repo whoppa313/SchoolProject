@@ -7,7 +7,6 @@ import lexicon.se.groupassignment.schoolAssignment.models.Student;
 
 
 
-
 public class StudentDaoListImpl implements StudentDao{
 	
 	private static List<Student> studentList; //- från pdf:en

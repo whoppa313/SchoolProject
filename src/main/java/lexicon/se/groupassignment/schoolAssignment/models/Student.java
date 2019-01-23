@@ -1,6 +1,7 @@
 package lexicon.se.groupassignment.schoolAssignment.models;
 
 public class Student {
+	
 	//private static sequence...?
 	private int id;
 	private String name;
