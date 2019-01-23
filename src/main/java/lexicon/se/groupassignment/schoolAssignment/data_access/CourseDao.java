@@ -5,7 +5,7 @@ import java.util.List;
 
 import lexicon.se.groupassignment.schoolAssignment.models.Course;
 
-public class CourseDao 
+public interface CourseDao 
 
 {
 
@@ -13,7 +13,7 @@ public class CourseDao
 	
 		
 		
-		
+	
 		 Course saveCourse(Course course);
 		 Course findById(int id);
 		 List<Course> findByName(String name);
