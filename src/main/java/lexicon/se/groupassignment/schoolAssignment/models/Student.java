@@ -10,6 +10,7 @@ public class Student {
 	
 	//Constructors
 	
+	//Empty default contructor
 	public Student() {}
 	
 	public Student(int id, String name, String email, String address) {
