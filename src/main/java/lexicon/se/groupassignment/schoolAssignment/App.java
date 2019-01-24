@@ -1,13 +1,30 @@
 package lexicon.se.groupassignment.schoolAssignment;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+ 
+	
+	
+	// Udemy Section 8, Lecture 82-83 
+	
+	
+	
+//	private static Scanner scanner = new Scanner(System.in);
+//	private static Course course = new Course();
+	
+	
+	public static void main( String[] args )
+    
+	{
+    
+		
+		
+		
+    	
+    	
     }
+	
+	
+    
+    
 }
