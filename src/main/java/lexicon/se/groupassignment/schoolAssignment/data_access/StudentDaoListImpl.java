@@ -1,33 +1,38 @@
 package lexicon.se.groupassignment.schoolAssignment.data_access;
 
 import java.util.*;
-import java.util.List;
 
 import lexicon.se.groupassignment.schoolAssignment.models.Student;
-
+import se.lexicon.erik.staff_manager.models.employee.Employee;
+import se.lexicon.erik.staff_manager.models.employee.SalesPerson;
 
 
 public class StudentDaoListImpl implements StudentDao{
 	
-	private static List<Student> studentList; //- från pdf:en
-	
-	
+	private static List<Student> studentList; 		//THE LIST!!!
 
+	private StudentDaoListImpl(){
+		studentList = new ArrayList<>();
+	}
+	
+	
+	private static final StudentDao instance;		//Instantiation - needed?
+	
+	static {
+		instance = new StudentDaoListImpl();
+	}
+	
+	public static StudentDao get() {
+		return instance;
+	}
+	
+	
+//--------------------------------------------------------
 	@Override
-	public boolean saveStudent(Student student) {
-		if(student == null) {
-			return false;
-		}
+	public Student saveStudent(Student student) {
 		
-		//if(findByEmail(student.getEmail()).isPresent()) {
-		//	return false;
-		//}
-		
-		if(studentList.contains(student)) {
-			return false;
-		}
-		return studentList.add(student);
-		
+		studentList.add(student);
+		return student;
 	}
 	
 	@Override
@@ -35,18 +40,35 @@ public class StudentDaoListImpl implements StudentDao{
 		if(student == null) {
 			return false;
 		}
+		
 		if(!studentList.contains(student)) {
 			return false;
 		}
+		
 		return studentList.remove(student);
 	}
 
 	@Override
 	public Student findByEmail(String email) {
-		// TODO Auto-generated method stub
+		for(Student s : studentList) {
+			if(s.getEmail() == email) {
+				return s;
+			}
+		}
 		return null;
 	}
 
+
+	@Override
+	public Student findById(int id) {
+		for(Student s : studentList) {
+			if(s.getId() == id) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
 	@Override
 	public List<Student> findByName(String name) {
 		
@@ -62,17 +84,21 @@ public class StudentDaoListImpl implements StudentDao{
 	}
 
 	@Override
-	public Student findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Student> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Student> result = new ArrayList<>();
+			
+		for(Student s : studentList) {
+			if(s instanceof Student) {
+				result.add((Student) s);
+			}
+		}
+			return result;
+		
 	}
 
-	
+	public static void clear() {
+		studentList.clear();
+	}
 
 }
