@@ -3,8 +3,7 @@ package lexicon.se.groupassignment.schoolAssignment.data_access;
 import java.util.*;
 
 import lexicon.se.groupassignment.schoolAssignment.models.Student;
-import se.lexicon.erik.staff_manager.models.employee.Employee;
-import se.lexicon.erik.staff_manager.models.employee.SalesPerson;
+
 
 
 public class StudentDaoListImpl implements StudentDao{
@@ -49,9 +48,9 @@ public class StudentDaoListImpl implements StudentDao{
 	}
 
 	@Override
-	public Student findByEmail(String email) {
+	public Student findByEmail(String email) {		
 		for(Student s : studentList) {
-			if(s.getEmail() == email) {
+			if(s.getEmail().toLowerCase().contains(email.toLowerCase())) {
 				return s;
 			}
 		}
@@ -84,7 +83,7 @@ public class StudentDaoListImpl implements StudentDao{
 	}
 
 	@Override
-	public List<Student> findAll() {
+	public List<Student> findAll() {		//return studentList?
 		
 		List<Student> result = new ArrayList<>();
 			
