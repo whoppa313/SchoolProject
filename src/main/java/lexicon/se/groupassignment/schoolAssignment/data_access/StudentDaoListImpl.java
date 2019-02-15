@@ -15,13 +15,13 @@ public class StudentDaoListImpl implements StudentDao{
 	}
 	
 	
-	private static final StudentDao instance;		//Instantiation - needed?
+	private static final StudentDao instance;		
 	
 	static {
 		instance = new StudentDaoListImpl();
 	}
 	
-	public static StudentDao get() {
+	public static StudentDao get() {	//Used in App-class for creating an instance of studentDao
 		return instance;
 	}
 	
@@ -29,7 +29,6 @@ public class StudentDaoListImpl implements StudentDao{
 //--------------------------------------------------------
 	@Override
 	public Student saveStudent(Student student) {
-		
 		studentList.add(student);
 		return student;
 	}
@@ -71,7 +70,7 @@ public class StudentDaoListImpl implements StudentDao{
 	@Override
 	public List<Student> findByName(String name) {
 		
-		List<Student> result = new ArrayList<>();
+		List<Student> result = new ArrayList<>();	//Create a new list containing all students with the same name
 		
 			for(Student s: studentList) {
 				if(s.getName().toLowerCase().contains(name.toLowerCase())) {
@@ -83,10 +82,9 @@ public class StudentDaoListImpl implements StudentDao{
 	}
 
 	@Override
-	public List<Student> findAll() {		//return studentList?
-		
+	public List<Student> findAll() {		
 		List<Student> result = new ArrayList<>();
-			
+		
 		for(Student s : studentList) {
 			if(s instanceof Student) {
 				result.add((Student) s);
@@ -95,6 +93,8 @@ public class StudentDaoListImpl implements StudentDao{
 			return result;
 		
 	}
+	
+	
 
 	public static void clear() {
 		studentList.clear();
