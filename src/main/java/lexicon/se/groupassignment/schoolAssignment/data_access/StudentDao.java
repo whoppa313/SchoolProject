@@ -7,7 +7,7 @@ import lexicon.se.groupassignment.schoolAssignment.models.Student;
 
 public interface StudentDao {
 	
-	boolean saveStudent(Student student);
+	Student saveStudent(Student student);
 	
 	boolean deleteStudent(Student student);
 	

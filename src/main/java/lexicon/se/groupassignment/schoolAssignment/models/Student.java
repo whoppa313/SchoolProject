@@ -10,6 +10,7 @@ public class Student {
 	
 	//Constructors
 	
+	//Empty default contructor
 	public Student() {}
 	
 	public Student(int id, String name, String email, String address) {
@@ -67,8 +68,9 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", email=" + email + ", address=" + address + "]";
+		return "\nStudent [id=" + id + ", name=" + name + ", email=" + email + ", address=" + address + "]";
 	}
+
 	
 	
 }

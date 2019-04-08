@@ -1,7 +1,6 @@
 package lexicon.se.groupassignment.schoolAssignment.data_access;
 
 import java.util.*;
-import java.util.List;
 
 import lexicon.se.groupassignment.schoolAssignment.models.Student;
 
@@ -9,25 +8,29 @@ import lexicon.se.groupassignment.schoolAssignment.models.Student;
 
 public class StudentDaoListImpl implements StudentDao{
 	
-	private static List<Student> studentList; //- från pdf:en
-	
-	
+	private static List<Student> studentList; 		//THE LIST!!!
 
+	private StudentDaoListImpl(){
+		studentList = new ArrayList<>();
+	}
+	
+	
+	private static final StudentDao instance;		
+	
+	static {
+		instance = new StudentDaoListImpl();
+	}
+	
+	public static StudentDao get() {	//Used in App-class for creating an instance of studentDao
+		return instance;
+	}
+	
+	
+//--------------------------------------------------------
 	@Override
-	public boolean saveStudent(Student student) {
-		if(student == null) {
-			return false;
-		}
-		
-		//if(findByEmail(student.getEmail()).isPresent()) {
-		//	return false;
-		//}
-		
-		if(studentList.contains(student)) {
-			return false;
-		}
-		return studentList.add(student);
-		
+	public Student saveStudent(Student student) {
+		studentList.add(student);
+		return student;
 	}
 	
 	@Override
@@ -35,22 +38,39 @@ public class StudentDaoListImpl implements StudentDao{
 		if(student == null) {
 			return false;
 		}
+		
 		if(!studentList.contains(student)) {
 			return false;
 		}
+		
 		return studentList.remove(student);
 	}
 
 	@Override
-	public Student findByEmail(String email) {
-		// TODO Auto-generated method stub
+	public Student findByEmail(String email) {		
+		for(Student s : studentList) {
+			if(s.getEmail().toLowerCase().contains(email.toLowerCase())) {
+				return s;
+			}
+		}
 		return null;
 	}
 
+
+	@Override
+	public Student findById(int id) {
+		for(Student s : studentList) {
+			if(s.getId() == id) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
 	@Override
 	public List<Student> findByName(String name) {
 		
-		List<Student> result = new ArrayList<>();
+		List<Student> result = new ArrayList<>();	//Create a new list containing all students with the same name
 		
 			for(Student s: studentList) {
 				if(s.getName().toLowerCase().contains(name.toLowerCase())) {
@@ -62,17 +82,22 @@ public class StudentDaoListImpl implements StudentDao{
 	}
 
 	@Override
-	public Student findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Student> findAll() {		
+		List<Student> result = new ArrayList<>();
+		
+		for(Student s : studentList) {
+			if(s instanceof Student) {
+				result.add((Student) s);
+			}
+		}
+			return result;
+		
 	}
-
-	@Override
-	public List<Student> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
+	
+
+	public static void clear() {
+		studentList.clear();
+	}
 
 }
