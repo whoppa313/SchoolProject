@@ -32,13 +32,9 @@ public class StudentTest {
 				testStudentName = testStudent.getName();
 				testStudentEmail = testStudent.getEmail();
 			}
-			
-	
-			
+		
 	//Test cases
-			
-			
-			
+		
 			
 			@Test
 			public void test_find_student_byId() {

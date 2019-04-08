@@ -1,7 +1,6 @@
 package lexicon.se.groupassignment.schoolAssignment;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,21 +28,16 @@ public class CoursesTest {
 	private LocalDate testStartDate;
 	
 	
-	
-	
 	//Runs BEFORE each test
 	@Before
 	public void init() {
 		LocalDate testdate = LocalDate.of(2018, 12, 10);
-		
-		testCourse = new Course(100, "Testcourse", testdate, 2);
-		
-		duringTest.saveCourse(testCourse);
+		testCourse = new Course(100, "Testcourse", testdate, 2);	//Create Testcourse
+		duringTest.saveCourse(testCourse);							//Save Testcourse to "courseList"
 		
 		testCourseId = testCourse.getId();
 		testCourseName = testCourse.getCourseName();
 		testStartDate = testCourse.getStartDate();
-		
 	}
 	
 	//Test cases
@@ -54,17 +48,17 @@ public class CoursesTest {
 		assertEquals(expected, duringTest.findById(testCourseId));
 	}
 	
-//	@Test
-//	public void test_find_course_byName() {
-//		Course expected = testCourse;
-//		assertEquals(expected, duringTest.findByName(testCourseName));
-//	}
-//	
-//	@Test
-//	public void test_find_course_byStartDate() {
-//		Course expected = testCourse;
-//		assertEquals(expected, duringTest.findByDate(testStartDate));
-//	}
+	@Test
+	public void test_find_course_byName() {
+		List <Course> expected = Arrays.asList(testCourse);
+		assertEquals(expected, duringTest.findByName(testCourseName));
+	}
+	
+	@Test
+	public void test_find_course_byStartDate() {
+		List <Course> expected = Arrays.asList(testCourse);
+		assertEquals(expected, duringTest.findByDate(testStartDate));
+	}
 	
 	//Runs AFTER each test
 	@After
